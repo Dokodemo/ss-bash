@@ -42,7 +42,7 @@
     修改所有用户流量限制：
         ssadmin.sh change_all_limit limit
     用户流量使用量置零：
-        ssadmin.sh rused limit
+        ssadmin.sh rused port
     所有用户流量使用量置零：
         ssadmin.sh reset_all_used
     用户流量限制置零：
