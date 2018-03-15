@@ -112,6 +112,26 @@ add_new_rules () {
     done
 }
 
+reset_rules () {
+    PORT=$1;
+
+    del_rules $PORT 2>/dev/null
+    del_reject_rules $PORT 2>/dev/null
+    add_rules $PORT
+}
+
+reset_all_rules () {
+    ports=`awk '
+        {
+            if($0 !~ /^#|^\s*$/) print $1
+        }
+    ' $USER_FILE`
+    for port in $ports
+    do
+        reset_rules $port;
+    done
+}
+
 update_or_create_traffic_file_from_users () {
 #根据用户文件生成或更新流量记录
     while [ -e $TRAFFIC_LOG.lock ]; do

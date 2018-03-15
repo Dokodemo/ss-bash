@@ -310,7 +310,7 @@ change_user () {
         if [ -e $SSSERVER_PID ]; then
             create_json
             kill -s SIGQUIT `cat $SSSERVER_PID`
-            add_rules $PORT
+            # add_rules $PORT
             run_ssserver
         fi
         # 更新流量记录文件
@@ -354,7 +354,7 @@ change_passwd () {
         if [ -e $SSSERVER_PID ]; then
             create_json
             kill -s SIGQUIT `cat $SSSERVER_PID`
-            add_rules $PORT
+            # add_rules $PORT
             run_ssserver
         fi
         # 更新流量记录文件
@@ -551,6 +551,7 @@ reset_used () {
             }
         }' > $TRAFFIC_LOG.tmp;
         mv $TRAFFIC_LOG.tmp $TRAFFIC_LOG
+        reset_all_rules
     else
         if [ "$#" -ne 1 ]; then
             wrong_para_prompt;
@@ -574,6 +575,7 @@ reset_used () {
                 }
             }' > $TRAFFIC_LOG.tmp;
             mv $TRAFFIC_LOG.tmp $TRAFFIC_LOG
+            reset_rules $PORT
         else
             echo "此用户不存在!"
             rm $TRAFFIC_LOG.lock
