@@ -616,6 +616,23 @@ case $1 in
         shift
         add_user $1 $2 $3
         ;;
+    add_single )
+        shift
+        PWORD=`openssl rand -base64 8`
+        add_user $1 $PWORD $2
+        ;;
+    add_range )
+        shift
+        if [ $# -ne 3 ]; then
+            echo "请指定用户端口范围及流量"
+            exit 1
+        fi
+        for i in `seq $1 $2`
+        do
+            PWORD=`openssl rand -base64 8`
+            add_user $i $PWORD $3
+        done
+        ;;
     del )
         shift
         del_user $1
