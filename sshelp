@@ -41,6 +41,8 @@
         ssadmin.sh change port passwd limit
     修改用户密码：
         ssadmin.sh cpw port passwd
+    修改用户密码（生成密码）：
+        ssadmin.sh rpw port
     修改用户流量限制：
         ssadmin.sh clim port limit
     修改所有用户流量限制：

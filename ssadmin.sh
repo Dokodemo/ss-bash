@@ -653,6 +653,11 @@ case $1 in
         shift
         change_passwd $1 $2
         ;;
+    rpw )
+        shift
+        PWORD=`openssl rand -base64 8`
+        change_passwd $1 $PWORD
+        ;;
     clim )
         shift
         change_limit $1 $2
